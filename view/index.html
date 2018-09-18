@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<script type="text/javascript"src="http://code.jquery.com/jquery-latest.js"></script>
+<body>
+  <input onchange="upload()" type="file" name="file" id="file" >
+
+  <a href="/api/download">
+    下载
+  </a>
+</body>
+</html>
+<script>
+  
+    function upload (){
+      let formData = new FormData()
+      formData.append('file',file.files[0]);
+      $.ajax({
+        type:'POST',
+        url:'/api/upload',
+        processData:false,
+        contentType: false,
+        data:formData,
+        success:function(data){
+          alert(data.message)
+        },
+      })
+      
+    }
+</script>

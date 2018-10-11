@@ -1,0 +1,7 @@
+G:\nodeUpload\.gitignore
+G:\nodeUpload\app.js
+G:\nodeUpload\document.js
+G:\nodeUpload\filelist.txt
+G:\nodeUpload\package-lock.json
+G:\nodeUpload\package.json
+G:\nodeUpload\README.md

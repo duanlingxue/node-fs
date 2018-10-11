@@ -40,6 +40,18 @@
       $.ajax({
        type:'get',
        url:'/api/getdir',
+       success:function(data){
+          let data1 = data.data
+          let divDom = document.createElement('div');
+          data1.forEach((filePath)=>{
+            let pDom = document.createElement('p')
+            divDom.appendChild(pDom)
+            pDom.innerHTML = filePath;
+          })
+          let bodyDom = document.querySelector('body')
+          bodyDom.appendChild(divDom)
+          
+        },
       })
     }
 </script>

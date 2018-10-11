@@ -59,16 +59,18 @@ app.post('/api/upload',multipartMiddleware,function (req, res) {
 // 文件夹内文件目录
 let filearr = []
 app.get('/api/getdir',function(req,res){
-  fs.readdir(filePath,(err,files)=>{
-    if(err)console.error(err)
-    files.forEach((file)=>{
-      fs.stat(path.join(filePath,file),(err,stats)=>{
-        if(stats.isFile()){
-          filearr.push(path.join(filePath,file));
-          writeFile(filearr)
-        }
-      })
-    })
+  let files = fs.readdirSync(filePath);
+  files.forEach((file)=>{
+    let stats = fs.statSync(path.join(filePath,file)) 
+    if(stats.isFile()){
+      filearr.push(path.join(filePath,file));
+    }
+  })
+  writeFile(filearr)
+  res.send({
+    data:filearr,
+    code:200,
+    message:'成功'
   })
 })
 app.get('/api/download',function(req,res){
@@ -87,7 +89,6 @@ function getdir(url){
 }
 
 function writeFile(data){
-  console.log(data)
   var data = data.join("\r\n")
   fs.writeFile(path.join(filePath,'filelist.txt'),data,(err)=>{
     if(err)console.log(err)

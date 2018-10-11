@@ -14,6 +14,10 @@
   <a href="/api/download">
     下载
   </a>
+
+  <button onclick="getdir()">
+    获取目录
+  </button>
 </body>
 </html>
 <script>
@@ -31,6 +35,11 @@
           alert(data.message)
         },
       })
-      
+    }
+    function getdir(){
+      $.ajax({
+       type:'get',
+       url:'/api/getdir',
+      })
     }
 </script>
